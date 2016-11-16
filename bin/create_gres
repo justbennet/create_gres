@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Stripped down path, with anaconda at the front to insure we use the
+# Anaconda python2.7 there.  Change as needed.
+export PATH=/opt/anaconda/bin:/opt/moab/FLEXlm/bin:/bin:/usr/bin:/usr/sbin:/sbin
+
+python /opt/moab/licenses/bin/gres.py
+

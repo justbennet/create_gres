@@ -1,0 +1,2 @@
+# Read in licensed software license info.
+*/5 * * * * root /opt/moab/licenses/bin/create_gres 2>/dev/null

@@ -37,13 +37,13 @@ for daemon in daemons:
         queryTime = int(time.time())
         lmTryCount += 1
         if lmRet[0] == 0:
-            break
+            continue
         else:
             time.sleep(1)
     if lmRet[0] != 0:
-        subjText = subjText % feature
-        errMsgText = errMsgText % (feature, space.join(lmCmd), lmRet[1])
-        tmpFile.write(gresLine % ( queryTime, gresName, 0, gresName, 0 ))
+        subjText = subjText.format(feature)
+        errMsgText = errMsgText.format(feature, space.join(lmCmd), lmRet[1])
+        tmpFile.write(gresLine.format( queryTime, gresName, 0, gresName, 0 ))
         sendNotice(toAddr, fromAddr, subjText, errMsgText)
     lmReplyText = lmRet[1].splitlines()
     featureUsagePat = 'Users of ' + feature
@@ -68,8 +68,8 @@ for daemon in daemons:
                 licUsed = int(0)
             # print feature, ": Total is ", licTotal, " and used is ", licUsed, " and licRsvd is ", licRsvd
             # print "Avail:  ", licTotal-licUsed-licRsvd
-            tmpFile.write(gresLine % ( queryTime, gresName, licTotal-licUsed-licRsvd, gresName, licTotal))
-            break
+            tmpFile.write(gresLine.format( queryTime, gresName, licTotal-licUsed-licRsvd, gresName, licTotal))
+            continue
 tmpFile.close()
 syslog.closelog()
 os.rename(tmpFname, gresFile)
